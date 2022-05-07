@@ -6,11 +6,13 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { GerenciarLivrosComponent } from './gerenciar-livros.component';
+import { EditarLivroComponent } from './editar-livro/editar-livro.component';
 
 
 @NgModule({
   declarations: [
-    GerenciarLivrosComponent
+    GerenciarLivrosComponent,
+    EditarLivroComponent
   ],
   imports: [
     CommonModule,
