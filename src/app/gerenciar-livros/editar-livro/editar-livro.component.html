@@ -1,12 +1,12 @@
 <section>
   <div class="card shadow roudend">
     <div class="card-title">
-      <h1 class="card-title_title">Editando Livro:</h1>
+      <h1 class="card-title_title">Editando Livro: {{livro.nome}}</h1>
     </div>
     <div class="card-body">
       <div class="row mt-4">
         <div class="col p-4">
-          <form [formGroup]="form">
+          <form [formGroup]="form" (ngSubmit)="update()">
             <div class="form-group">
               <label>Título</label>
               <input type="text" formControlName="nome" class="form-control">
@@ -23,7 +23,7 @@
             </div>
             <div class="mt-4">
               <button type="submit" [disabled]="!form.valid" class="btn btn-dark">Salvar</button>
-              <button (click)="voltar()" type="button" class="btn btn-light mr-2">Voltar</button>
+              <button (click)="voltar()" type="submit" class="btn btn-light mr-2">Voltar</button>
             </div>
           </form>
         </div>

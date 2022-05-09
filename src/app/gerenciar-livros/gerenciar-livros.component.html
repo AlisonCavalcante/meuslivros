@@ -40,7 +40,7 @@
             <h4 class="card-title_title">{{livro.nome}}</h4>
           </div>
           <div class="card-body">
-            <p>Descrição</p>
+            <p>{{livro.observacao}}</p>
           </div>
           <div class="card-footer">
             <div class="row">
@@ -49,7 +49,7 @@
                 <button (click)="excluir(livro,i)" class="btn btn-sm btn-danger">Excluir</button>
               </div>
               <div class="col text-right">
-                <h5>⭐</h5>
+                <h5>{{livro.avaliacao}}⭐</h5>
               </div>
             </div>
           </div>

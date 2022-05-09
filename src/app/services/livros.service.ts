@@ -5,26 +5,28 @@ import { Livro } from 'src/app/shared/models/livro';
 import { Constantes } from '../shared/utils/constantes';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LivrosService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getLivros(): Observable<Livro[]>{
+  getLivros(): Observable<Livro[]> {
     return this.http.get<Livro[]>(Constantes.URL_BASE);
   }
 
-  create(livro: Livro): Observable<Livro>{
+  getLivroById(id: number): Observable<Livro> {
+    return this.http.get<Livro>(Constantes.URL_BASE + id);
+  }
+
+  create(livro: Livro): Observable<Livro> {
     return this.http.post<Livro>(Constantes.URL_BASE, livro);
   }
 
-  update(livro: Livro): Observable<Livro>{
-      return this.http.patch<Livro>('',livro);
+  update(livro: Livro): Observable<Livro> {
+    return this.http.patch<Livro>(Constantes.URL_BASE + livro._id, livro);
   }
 
-  delete(livro: Livro){
+  delete(livro: Livro) {
     return this.http.delete(Constantes.URL_BASE + livro._id);
   }
-
 }
