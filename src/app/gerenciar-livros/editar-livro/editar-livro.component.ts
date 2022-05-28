@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
 import { Livro } from 'src/app/shared/models/livro';
 import { switchMap } from 'rxjs/operators';
+import { MensagensService } from 'src/app/services/mensagens.service';
 
 @Component({
   selector: 'app-editar-livro',
@@ -24,7 +25,8 @@ export class EditarLivroComponent implements OnInit {
     private livrosService: LivrosService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private activateRouter: ActivatedRoute
+    private activateRouter: ActivatedRoute,
+    private mensagemService: MensagensService
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +65,7 @@ export class EditarLivroComponent implements OnInit {
   update() {
     this.popularLivro('nome', 'observacao', 'avaliacao');
     this.livrosService.update(this.livro).subscribe((res) => {
+      this.mensagemService.addMensagem("Livro Editado com Sucesso!")
       console.log(res);
     });
   }

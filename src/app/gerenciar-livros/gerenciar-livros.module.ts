@@ -1,3 +1,4 @@
+import { MensagensComponent } from './../shared/mensagens/mensagens.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -12,7 +13,8 @@ import { EditarLivroComponent } from './editar-livro/editar-livro.component';
 @NgModule({
   declarations: [
     GerenciarLivrosComponent,
-    EditarLivroComponent
+    EditarLivroComponent,
+    MensagensComponent
   ],
   imports: [
     CommonModule,

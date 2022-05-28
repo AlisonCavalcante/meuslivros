@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LivrosService } from '../services/livros.service';
+import { MensagensService } from '../services/mensagens.service';
 import { Livro } from '../shared/models/livro';
 
 @Component({
@@ -12,7 +13,7 @@ export class GerenciarLivrosComponent implements OnInit {
 
   form!: FormGroup;
   livros: Livro [] = [];
-  constructor(private livrosService: LivrosService, private formBuilder: FormBuilder) { }
+  constructor(private livrosService: LivrosService, private formBuilder: FormBuilder,private mensagensService: MensagensService) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -25,6 +26,7 @@ export class GerenciarLivrosComponent implements OnInit {
   cadastrar(){
      this.livrosService.create(this.form.value).subscribe((res) => {
        this.livros.push(res);
+       this.mensagensService.addMensagem("Livro Cadastrado com Sucesso");
        this.form.reset()
      })
   }

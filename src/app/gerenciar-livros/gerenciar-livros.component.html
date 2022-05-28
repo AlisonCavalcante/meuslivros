@@ -2,7 +2,8 @@
   <div class="content-mintitle">
     <p>Lista de Livros</p>
   </div>
-  <section>
+  <app-mensagens></app-mensagens>
+  <section class="content-card">
     <div class="card rounded shadow-lg p-3">
       <div>
         <h1 class="card_title">Gerenciar Livros</h1>
@@ -10,24 +11,29 @@
           Gerencie, edite ou remova livros da sua lista
         </h4>
       </div>
-
       <!-- novos livros container -->
-
       <div class="card shadow roudend">
         <div class="card-body novosLivros-body">
           <div class="row">
             <div class="form-group col-10">
               <form [formGroup]="form">
                 <input
-                type="text"
-                class="form-control"
-                placeholder="Título do Livro"
-                formControlName="nome"
-              />
+                  type="text"
+                  class="form-control"
+                  placeholder="Título do Livro"
+                  formControlName="nome"
+                />
               </form>
             </div>
             <div class="form-group col-2 text-right">
-              <button [disabled]="!form.valid" type="submit"  (click)="cadastrar()"  class="btn btn-dark">+ Cadastrar</button>
+              <button
+                [disabled]="!form.valid"
+                type="submit"
+                (click)="cadastrar()"
+                class="btn btn-dark"
+              >
+                + Cadastrar
+              </button>
             </div>
           </div>
         </div>
@@ -35,21 +41,31 @@
       <!-- fim novos livros container -->
       <!-- lista de livros container -->
       <section class="lista-livros">
-        <div *ngFor="let livro of livros, let i = index" class="card col-3">
+        <div *ngFor="let livro of livros; let i = index" class="card col-3">
           <div class="card-title">
-            <h4 class="card-title_title">{{livro.nome}}</h4>
+            <h4 class="card-title_title">{{ livro.nome }}</h4>
           </div>
           <div class="card-body">
-            <p>{{livro.observacao}}</p>
+            <p>{{ livro.observacao }}</p>
           </div>
           <div class="card-footer">
             <div class="row">
               <div class="col content-button">
-                <a class="btn btn-sm btn-dark mr-2" [routerLink]="['edit/', livro._id]">Editar</a>
-                <button (click)="excluir(livro,i)" class="btn btn-sm btn-danger">Excluir</button>
+                <a
+                  class="btn btn-sm btn-dark mr-2"
+                  [routerLink]="['edit/', livro._id]"
+                  data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                  >Editar</a
+                >
+                <button
+                  (click)="excluir(livro, i)"
+                  class="btn btn-sm btn-danger"
+                >
+                  Excluir
+                </button>
               </div>
               <div class="col text-right">
-                <h5>{{livro.avaliacao}}⭐</h5>
+                <h5>{{ livro.avaliacao }}⭐</h5>
               </div>
             </div>
           </div>
@@ -57,5 +73,44 @@
       </section>
     </div>
   </section>
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Launch static backdrop modal
+  </button>
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">...</div>
+          <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="modal"> -->
 </section>
 <router-outlet></router-outlet>
