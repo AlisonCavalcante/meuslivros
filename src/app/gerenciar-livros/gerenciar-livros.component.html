@@ -10,21 +10,41 @@
         <h4 class="card_subtitle">
           Gerencie, edite ou remova livros da sua lista
         </h4>
+        <h5 class="card_subtitle">Total de livros cadastrados: {{totalLivros}}</h5>
       </div>
-      <app-pesquisar-livros (emmitPesquisar)="getPesquisar($event)"></app-pesquisar-livros>
+      <app-pesquisar-livros class="col-6 d-flex align-self-center" (emmitPesquisar)="getPesquisar($event)"></app-pesquisar-livros>
       <!-- novos livros container -->
       <div class="card shadow roudend">
         <div class="card-body novosLivros-body">
+          <form [formGroup]="form">
           <div class="row">
-            <div class="form-group col-10">
-              <form [formGroup]="form">
+            <div class="form-group col-7">
+
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Título do Livro"
                   formControlName="nome"
                 />
-              </form>
+
+            </div>
+            <div class=" col-3 dropdown">
+              <select
+              class="btn btn-secondary form-select-lg"
+              aria-label="Default select example"
+              type ="text"
+              id="categorias"
+              formControlName="categorias"
+            >
+              <option
+                style="text-transform: capitalize"
+                *ngFor="let categoria of categorias"
+                selected
+                [ngValue]="categoria"
+              >
+                {{ categoria }}
+              </option>
+            </select>
             </div>
             <div class="form-group col-2 text-right">
               <button
@@ -37,10 +57,34 @@
               </button>
             </div>
           </div>
+        </form>
         </div>
+
       </div>
       <!-- fim novos livros container -->
       <!-- lista de livros container -->
+      <form [formGroup]="formFiltro" >
+        <div class=" col-3 mt-4 d-flex align-self-start dropdown">
+          <select
+          class="btn btn-secondary form-select-lg"
+          aria-label="Default select example"
+          type ="text"
+          id="categorias"
+          formControlName="categorias"
+          (click)="teste()"
+        >
+          <option
+            style="text-transform: capitalize"
+            *ngFor="let categoria of categorias"
+            selected
+            [ngValue]="categoria"
+          >
+            {{ categoria }}
+          </option>
+        </select>
+        </div>
+      </form>
+
       <section class="lista-livros">
         <div *ngFor="let livro of livros; let i = index" class="card col-3">
           <div class="card-title">

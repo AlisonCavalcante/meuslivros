@@ -23,6 +23,12 @@
               <input type="text" formControlName="observacao" class="form-control">
             </div>
             <div class="form-group">
+              <label >Categorias</label>
+              <select formControlName="categoria" class="form-select" aria-label="Default select example">
+                <option  *ngFor="let c of categorias"  >{{c}}</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label >Avaliação ⭐</label>
               <select formControlName="avaliacao" class="form-select" aria-label="Default select example">
                 <option  *ngFor="let rating of movieRatingOptions" [value]="rating" >{{rating}}</option>

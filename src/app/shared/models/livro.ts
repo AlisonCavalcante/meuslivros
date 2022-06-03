@@ -3,4 +3,5 @@ export interface Livro {
   nome: string,
   observacao: string,
   avaliacao: number,
+  categoria: string
 }

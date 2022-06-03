@@ -16,6 +16,7 @@ export class PesquisarLivrosComponent implements OnInit {
   }
 
   pesquisar(){
+    console.log(this.pesquisarTexto)
     this.emmitPesquisar.emit(this.pesquisarTexto)
   }
 

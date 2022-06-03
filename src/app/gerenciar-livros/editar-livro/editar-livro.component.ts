@@ -19,7 +19,9 @@ export class EditarLivroComponent implements OnInit {
     nome: '',
     observacao: '',
     avaliacao: 0,
+    categoria: ''
   };
+  categorias: string [] = ['Ação', 'Investimentos', 'Ficção Científica'];
 
   constructor(
     private livrosService: LivrosService,
@@ -38,6 +40,7 @@ export class EditarLivroComponent implements OnInit {
       nome: [this.livro.nome, Validators.required],
       observacao: [this.livro.observacao],
       avaliacao: [''],
+      categoria: ['']
     });
     this.activateRouter.params
       .pipe(
@@ -52,6 +55,7 @@ export class EditarLivroComponent implements OnInit {
           nome: livro.nome,
           observacao: livro.observacao,
           avaliacao: livro.avaliacao,
+          categoria: livro.categoria,
         });
       });
   }
@@ -63,17 +67,17 @@ export class EditarLivroComponent implements OnInit {
   }
 
   update() {
-    this.popularLivro('nome', 'observacao', 'avaliacao');
+    this.popularLivro('nome', 'observacao', 'avaliacao', 'categoria');
     this.livrosService.update(this.livro).subscribe((res) => {
       this.mensagemService.addMensagem("Livro Editado com Sucesso!")
-      console.log(res);
     });
   }
 
-  popularLivro(nome: string, observacao: string, avaliacao: string) {
+  popularLivro(nome: string, observacao: string, avaliacao: string, categoria: string) {
     this.livro.nome = this.form.get(nome)?.value;
     this.livro.observacao = this.form.get(observacao)?.value;
     this.livro.avaliacao = this.form.get(avaliacao)?.value;
+    this.livro.categoria =  this.form.get(categoria)?.value.toUpperCase();
   }
 
   voltar() {
